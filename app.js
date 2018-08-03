@@ -32,7 +32,7 @@ const PORT = 3000
 const init = async () => {
   // await db.User.sync();
   // await db.Page.sync();
-  await models.db.sync();
+  await models.db.sync({force: true});
   app.listen(PORT, () => {
     console.log(`App listening in port ${PORT}`)
   })
