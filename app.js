@@ -15,12 +15,18 @@ app.use('/user',user);
 app.use(morgan('dev'));
 
 
+// app.get('/wiki', async (req, res) => {
+//   await db.sync();
+//   res.send(layout(''));
+// })
 
 app.get('/', async (req, res) => {
   await db.sync();
-  res.redirect('/wiki');
+  //res.redirect('/wiki');
   res.send(layout(''));
 })
+
+
 
 
 const PORT = 3000

@@ -2,13 +2,9 @@ const express = require('express');
 const router = express.Router();
 const adding = require('../views/addPage.js');
 const { Page } = require("../models");
-const { addPage } = require("../views");
+//const { addPage } = require("../views");
 
 router.post('/', async (req, res, next) => {
-
-  // STUDENT ASSIGNMENT:
-  // add definitions for `title` and `content`
-
   const page = new Page({
       title: req.body.title,
       content: req.body.content,
@@ -17,9 +13,9 @@ router.post('/', async (req, res, next) => {
       status: req.body.status,
       slug: req.body.title
     });
-
     try {
         await page.save();
+        console.log(page);
         res.redirect('/');
     } catch (error) { next(error) }
 });
