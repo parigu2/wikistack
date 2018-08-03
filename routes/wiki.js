@@ -8,7 +8,7 @@ router.post('/', async (req, res, next) => {
 
   // STUDENT ASSIGNMENT:
   // add definitions for `title` and `content`
-  
+
   const page = new Page({
       title: req.body.title,
       content: req.body.content,
@@ -17,9 +17,7 @@ router.post('/', async (req, res, next) => {
       status: req.body.status,
       slug: `http://localhost:3000/wiki/${req.body.title}`
     });
-    
-    // make sure we only redirect *after* our save is complete!
-    // note: `.save` returns a promise.
+
     try {
         await page.save();
         res.redirect('/');
@@ -31,11 +29,15 @@ router.get('/', (req, res, next) => {
 });
 
 
-
 router.get('/add', (req, res, next) =>{
     res.send(adding())
 })
 
+
+function makeSlug(title) {
+  let slug = title.replace(/\s/g, '_').replace(/\W/g, '');
+  return slug;
+}
 
 
 
