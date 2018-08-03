@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const layout = require('./views/layout');
 // const { db } = require('./models');
 const models = require('./models');
+const wiki = require('./routes/wiki');
+const user = require('./routes/user');
+
 
 // db.authenticate().
 // then(() => {

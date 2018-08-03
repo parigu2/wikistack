@@ -6,7 +6,8 @@ const db = new Sequelize('postgres://localhost:5432/wikistack', {
 const Page = db.define('page', {
   title: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Untitled'
   },
   slug: {
     type: Sequelize.STRING,
@@ -14,28 +15,29 @@ const Page = db.define('page', {
   },
   content: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'No content'
   },
   status: {
-    type: Sequelize.ENUM('open', 'closed')
+    type: Sequelize.ENUM('open', 'closed'),
+    defaultValue: 'closed'
   }
 });
 
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Anonymous'
   },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    isEmail: true
+    validate: {
+      isEmail: true
+    }
   }
 });
 
-// module.exports = { Page, User };
 
-
-module.exports = {
-  db
-}
+module.exports = { db, Page, User }
