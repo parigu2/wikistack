@@ -15,7 +15,7 @@ router.post('/', async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       status: req.body.status,
-      slug: `http://localhost:3000/wiki/${req.body.title}`
+      slug: req.body.title
     });
 
     try {
@@ -33,11 +33,6 @@ router.get('/add', (req, res, next) =>{
     res.send(adding())
 })
 
-
-function makeSlug(title) {
-  let slug = title.replace(/\s/g, '_').replace(/\W/g, '');
-  return slug;
-}
 
 
 

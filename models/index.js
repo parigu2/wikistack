@@ -21,8 +21,22 @@ const Page = db.define('page', {
   status: {
     type: Sequelize.ENUM('open', 'closed'),
     defaultValue: 'closed'
-  }
+  },
 });
+Page.beforeCreate((pageInstance) => {
+  this.slug = makeSlug(pageInstance.title);
+})
+
+function makeSlug(title) {
+  let slug = ''
+  if (title) {
+    slug = title.replace(/\s/g, '_').replace(/\W/g, '');
+  }
+  if (slug === '' || slug === undefined) {
+    slug = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  }
+  return slug;
+}
 
 const User = db.define('user', {
   name: {
