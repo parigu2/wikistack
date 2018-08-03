@@ -7,7 +7,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    res.send('wiki post')
+  res.json(req.body);
+  res.send('wiki post')
 });
 
 router.get('/add', (req, res, next) =>{
